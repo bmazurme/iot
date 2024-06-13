@@ -1,9 +1,8 @@
 import React, { useEffect, type ComponentType } from 'react';
 import { Navigate } from 'react-router-dom';
+import LinearProgress from '@mui/material/LinearProgress';
 import { useErrorHandler } from 'react-error-boundary';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-
-import Preloader from '../components/preloader';
 
 import useUser from '../hooks/use-user';
 import { useAppLocation } from '../hooks/use-app-location';
@@ -34,7 +33,7 @@ export default function withUser<P extends Record<string, unknown>>(
     }, [getUser, isError, isLoading, isUninitialized, userData]);
 
     if (isLoading || (isUninitialized && !userData)) {
-      return <Preloader />;
+      return <LinearProgress />;
     }
 
     if (userData || !shouldBeAuthorized) {
