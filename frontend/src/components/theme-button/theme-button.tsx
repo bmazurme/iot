@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useContext } from 'react';
-import { BiMoon, BiSun } from '../../utils/icons/bi';
+import { IconButton } from '@mui/material';
+import { DarkMode, LightMode } from '@mui/icons-material';
 
 import ThemeContext from '../../context/theme-context';
-
-import style from './theme-button.module.css';
 
 export default function ThemeButton() {
   const { isDark, setIsDark } = useContext(ThemeContext);
@@ -14,13 +13,8 @@ export default function ThemeButton() {
   };
 
   return (
-    <button
-      className={style.button}
-      type="button"
-      aria-label="Switch theme"
-      onClick={onToggle}
-    >
-      {isDark === 'light' ? <BiMoon /> : <BiSun />}
-    </button>
+    <IconButton onClick={onToggle} size="small">
+      {isDark === 'light' ? <DarkMode /> : <LightMode />}
+    </IconButton>
   );
 }
